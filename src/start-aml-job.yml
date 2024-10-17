@@ -5,8 +5,8 @@ parameters:
 steps:
 - checkout: self
 
-- script: az extension add -n ml -y
-  displayName: 'Install Azure ML CLI v2'
+# - script: az extension add -n ml -y
+#   displayName: 'Install Azure ML CLI v2'
 
 - task: AzureCLI@2
   inputs:
