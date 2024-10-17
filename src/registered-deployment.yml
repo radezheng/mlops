@@ -1,0 +1,4 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+model: azureml:test-model01:1
+instance_type: Standard_F4s_v2
+instance_count: 1
