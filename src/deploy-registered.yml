@@ -21,9 +21,9 @@ steps:
       az extension add -n ml --allow-preview false -y
       az ml -h
       # 获取当前月份和日期
-      current_date = datetime.now().strftime("%m%d")
+      current_date=$(date +%m%d)
 
       # 生成新的名称
-      depName = f"depTest-{current_date}"
+      depName="depTest-${current_date}"
       az ml online-deployment create --name $depName  --resource-group rg-aml --workspace-name aml-ea --endpoint ${{ parameters.ep_name }} -f ./registered-deployment.yml --all-traffic
   displayName: 'Run Azure Machine Learning Pipeline'
