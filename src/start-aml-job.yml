@@ -5,9 +5,6 @@ parameters:
 steps:
 - checkout: self
 
-- script: az ml -h
-  displayName: 'test aml cli'
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: ${{ parameters.serviceconnectionname }}
@@ -20,7 +17,7 @@ steps:
       cd src
       ls
       az extension add -n ml -y
-      az extension list-available -o table | grep ml
       az ml -h
+      az ml compute start --name "admin5"
       az ml job create --file basic_job.yml --resource-group rg-aml --workspace-name aml-ea
   displayName: 'Run Azure Machine Learning Pipeline'
