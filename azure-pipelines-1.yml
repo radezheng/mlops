@@ -13,6 +13,9 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- bash: az --version
+  displayName: 'Show Azure CLI version'
+  
 - template: src/start-aml-job.yml
   parameters:
     serviceconnectionname: 'Azure-ARM-Dev'
