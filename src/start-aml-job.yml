@@ -19,6 +19,7 @@ steps:
       pwd
       cd src
       ls
+      az extension update -n ml -y
       az extension list-available -o table | grep ml
       az ml -h
       az ml job create --file basic_job.yml --resource-group rg-aml --workspace-name aml-ea
