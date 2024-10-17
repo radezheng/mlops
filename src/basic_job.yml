@@ -1,5 +1,5 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
-code: src
+code: job
 command: >-
   python main.py 
 environment: azureml:basic-env-scikit@latest
