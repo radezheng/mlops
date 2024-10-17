@@ -1,9 +1,8 @@
 parameters:
 - name: serviceconnectionname
   default: ''
-
-variables:
-  computeInstanceName: admin6
+- name: computeInstanceName
+  default: 'admin6'
 
 steps:
 - checkout: self
@@ -22,22 +21,22 @@ steps:
       az extension add -n ml --allow-preview false -y
       az ml -h
       # Check if the compute instance exists
-      COMPUTE_EXISTS=$(az ml compute show --name "${{ variables.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea --query "name" -o tsv || echo "None")
+      COMPUTE_EXISTS=$(az ml compute show --name "${{ parameters.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea --query "name" -o tsv || echo "None")
       
       if [ "$COMPUTE_EXISTS" == "None" ]; then
         echo "Compute instance does not exist. Creating it..."
-        az ml compute create --name "${{ variables.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea --size STANDARD_DS3_V2
+        az ml compute create --name "${{ parameters.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea --size STANDARD_DS3_V2
       else
         echo "Compute instance exists."
       fi
       
       # Check the status of the compute instance
-      STATUS=$(az ml compute show --name "${{ variables.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea --query "state" -o tsv)
+      STATUS=$(az ml compute show --name "${{ parameters.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea --query "state" -o tsv)
       
       # If the compute instance is stopped, start it
       if [ "$STATUS" == "Stopped" ]; then
         echo "Compute instance is stopped. Starting it..."
-        az ml compute start --name "${{ variables.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea
+        az ml compute start --name "${{ parameters.computeInstanceName }}" --resource-group rg-aml --workspace-name aml-ea
       else
         echo "Compute instance is in state: $STATUS"
       fi
