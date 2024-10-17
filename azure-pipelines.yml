@@ -14,6 +14,6 @@ stages:
        runOnce:
          deploy:
           steps:
-          - template: start-aml-job.yml
+          - template: src/start-aml-job.yml
             parameters:
               serviceconnectionname: 'Azure-ARM-Dev'
