@@ -2,7 +2,7 @@ parameters:
 - name: serviceconnectionname
   default: ''
 - name: ep_name
-  default:'test-ep02'
+  default: 'test-ep02'
 
 steps:
 - checkout: self
