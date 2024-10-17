@@ -18,5 +18,6 @@ steps:
       pwd
       cd src
       ls
+      az ml -h
       az ml job create --file basic_job.yml --resource-group rg-aml --workspace-name aml-ea
   displayName: 'Run Azure Machine Learning Pipeline'
