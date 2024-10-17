@@ -21,7 +21,7 @@ steps:
       az extension add -n ml --allow-preview false -y
       az ml -h
       # 获取当前月份和日期
-      current_date=$(date +%m%d)
+      current_date=$(date +%m%d%H%M%S)
 
       # 生成新的名称
       depName="depTest-${current_date}"
