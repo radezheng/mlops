@@ -1,0 +1,20 @@
+parameters:
+- name: serviceconnectionname
+  default: ''
+
+steps:
+- checkout: self
+
+- script: az extension add -n ml -y
+  displayName: 'Install Azure ML CLI v2'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: ${{ parameters.serviceconnectionname }}
+    scriptType: bash
+    scriptLocation: inlineScript
+    workingDirectory: $(Build.SourcesDirectory)
+    inlineScript: |
+      cd src
+      az ml job create --file aml_service/pipeline-job.yml --resource-group dev-ml-rg --workspace-name dev-ml-ws
+  displayName: 'Run Azure Machine Learning Pipeline'
