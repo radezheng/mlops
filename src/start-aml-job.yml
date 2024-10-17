@@ -1,8 +1,7 @@
 parameters:
 - name: serviceconnectionname
   default: ''
-- name: computeInstanceName
-  default: 'admin5'
+
 
 steps:
 - checkout: self
