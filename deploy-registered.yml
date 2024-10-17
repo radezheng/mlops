@@ -1,0 +1,14 @@
+
+trigger:
+- master
+
+pool:
+  name: amlpool
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+  
+- template: src/deploy-registered.yml
+  parameters:
+    serviceconnectionname: 'Azure-ARM-Dev'
