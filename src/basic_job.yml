@@ -3,6 +3,6 @@ code: job
 command: >-
   python main.py 
 environment: azureml:basic-env-scikit@latest
-compute: azureml:admin5
+compute: azureml:cluster1
 experiment_name: diabetes-example
 description: Train a Logistic Regression classification model on the diabetes dataset that is stored locally.
