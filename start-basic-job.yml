@@ -11,7 +11,7 @@ schedules:
   displayName: every 5 minutes midnight build
   branches:
     include:
-    - main
+    - master
   always: true
 
 pool:
