@@ -6,9 +6,6 @@
 trigger:
 - master
 
-pool:
-  name: amlpool
-
 schedules:
 - cron: '*/5 * * * *'
   displayName: every 5 minutes midnight build
@@ -16,6 +13,11 @@ schedules:
     include:
     - main
   always: true
+
+
+pool:
+  name: amlpool
+
 
 steps:
 - script: echo Hello, world!
