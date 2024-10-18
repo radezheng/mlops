@@ -2,14 +2,6 @@
 trigger:
 - master
 
-schedules:
-- cron: '*/5 * * * *'
-  displayName: every 5 minutes midnight build
-  branches:
-    include:
-    - main
-  always: true
-
 pool:
   name: amlpool
 
