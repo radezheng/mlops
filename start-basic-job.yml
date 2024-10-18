@@ -3,8 +3,12 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+schedules:
+- cron: '*/5 * * * *'
+  displayName: every 5 minutes midnight build
+  branches:
+    include:
+    - main
 
 pool:
   name: amlpool
