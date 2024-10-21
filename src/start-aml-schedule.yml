@@ -18,18 +18,15 @@ steps:
       ls src
       az extension add -n ml --allow-preview false -y
       repo_uri=$(git ls-remote --get-url)
-      branch=$(git symbolic-ref --short HEAD)
       commit=$(git rev-parse HEAD)
       commit_message=$(git log -1 --pretty=%B)
 
       eval "yq -i '.create_job.tags.repo_uri = \"$repo_uri\"' src/schedule-job-adv.yml -y"
-      eval "yq -i '.create_job.tags.branch = \"$branch\"' src/schedule-job-adv.yml -y"
       eval "yq -i '.create_job.tags.commit = \"$commit\"' src/schedule-job-adv.yml -y"
       eval "yq -i '.create_job.tags.commit_message = \"$commit_message\"' src/schedule-job-adv.yml -y"
 
       az ml schedule create --file src/schedule-job-adv.yml -g rg-aml -w aml-ea \
         --set tags.repo_uri=$repo_uri \
-        tags.branch=$branch \
         tags.commit=$commit \
         tags.commit_message="$commit_message"
   displayName: '创建定时任务1'
