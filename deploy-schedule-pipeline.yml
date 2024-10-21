@@ -33,17 +33,17 @@ steps:
         echo "yq is already installed"
     fi
   displayName: 'Check and Install yq if not exists'
+  continueOnError: true
 
 - script: |
-    repo_uri=$(git ls-remote --get-url)
-    branch=$(git symbolic-ref --short HEAD)
-    commit=$(git rev-parse HEAD)
-    commit_message=$(git log -1 --pretty=%B)
+    repo_uri=$(echo $(Build.Repository.Uri))
+    branch=$(echo $(Build.SourceBranchName))
+    commit=$(echo $(Build.SourceVersion))
     yq eval '.create_job.tags.repo_uri = "'"$repo_uri"'"' -i src/schedule-job-adv.yml
     yq eval '.create_job.tags.branch = "'"$branch"'"' -i src/schedule-job-adv.yml
     yq eval '.create_job.tags.commit = "'"$commit"'"' -i src/schedule-job-adv.yml
-    yq eval '.create_job.tags.commit_message = "'"$commit_message"'"' -i src/schedule-job-adv.yml
   displayName: 'Add Git Info Tags to YAML'
+  continueOnError: true
 
 
 - template: src/start-aml-schedule.yml
