@@ -36,12 +36,15 @@ steps:
   continueOnError: true
 
 - script: |
-    repo_uri=$(echo $(Build.Repository.Uri))
-    branch=$(echo $(Build.SourceBranchName))
-    commit=$(echo $(Build.SourceVersion))
-    yq eval '.create_job.tags.repo_uri = "'"$repo_uri"'"' -i src/schedule-job-adv.yml
-    yq eval '.create_job.tags.branch = "'"$branch"'"' -i src/schedule-job-adv.yml
-    yq eval '.create_job.tags.commit = "'"$commit"'"' -i src/schedule-job-adv.yml
+    repo_uri=$(git ls-remote --get-url)
+    branch=$(git symbolic-ref --short HEAD)
+    commit=$(git rev-parse HEAD)
+    commit_message=$(git log -1 --pretty=%B)
+
+    eval "yq -i '.create_job.tags.repo_uri = \"$repo_uri\"' src/schedule-job-adv.yml -y"
+    eval "yq -i '.create_job.tags.branch = \"$branch\"' src/schedule-job-adv.yml -y"
+    eval "yq -i '.create_job.tags.commit = \"$commit\"' src/schedule-job-adv.yml -y"
+    eval "yq -i '.create_job.tags.commit_message = \"$commit_message\"' src/schedule-job-adv.yml -y"
   displayName: 'Add Git Info Tags to YAML'
   continueOnError: true
 
