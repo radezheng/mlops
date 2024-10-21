@@ -27,5 +27,9 @@ steps:
       eval "yq -i '.create_job.tags.commit = \"$commit\"' src/schedule-job-adv.yml -y"
       eval "yq -i '.create_job.tags.commit_message = \"$commit_message\"' src/schedule-job-adv.yml -y"
 
-      az ml schedule create --file src/schedule-job-adv.yml -g rg-aml -w aml-ea
+      az ml schedule create --file src/schedule-job-adv.yml -g rg-aml -w aml-ea \
+        --set tags.repo_uri=$repo_uri \
+        tags.branch=$branch \
+        tags.commit=$commit \
+        tags.commit_message=$commit_message
   displayName: '创建定时任务1'
