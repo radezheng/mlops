@@ -31,5 +31,5 @@ steps:
         --set tags.repo_uri=$repo_uri \
         tags.branch=$branch \
         tags.commit=$commit \
-        tags.commit_message=$commit_message
+        tags.commit_message="$commit_message"
   displayName: '创建定时任务1'
