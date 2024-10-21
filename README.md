@@ -90,12 +90,12 @@ instance_type: Standard_F4s_v2
 instance_count: 1
 ```
 
-# 定时任务
+# 场景四、定时任务Job on AML
+### Pipeline 文件 [./deploy-schedule-pipeline.yml](./deploy-schedule-pipeline.yml)
 
-```
-cd src
-az ml job create --file basic-pipeline-job.yml -g rg-aml -w aml-ea
+只有Pipeline Job才支持Schedule, 所以调用链如下:
+- [./deploy-schedule-pipeline.yml](./deploy-schedule-pipeline.yml) -> [./src/start-aml-schedule.yml](./src/start-aml-schedule.yml) -> [./src/schedule-job-adv.yml](./src/schedule-job-adv.yml) -> [./src/basic-pipeline-job.yml](./src/basic-pipeline-job.yml)
 
-az ml schedule create --file schedule-job.yml --no-wait -g <ResourceGroup> -w <WorkspaceName>
-az ml schedule create --file schedule_job.yml --no-wait -g rg-aml -w aml-ea
-```
+- [./src/start-aml-schedule.yml](./src/start-aml-schedule.yml) 用az cli 调用模板创建 AML Schedule
+- [./src/schedule-job-adv.yml](./src/schedule-job-adv.yml) 定义AML Schedule的具体参数, 同时创建一个AML Pipeline Job
+- [./src/basic-pipeline-job.yml](./src/basic-pipeline-job.yml) 定义AML Pipeline Job的具体参数， 具体调用的python代码在[./src/job](./src/job)目录下

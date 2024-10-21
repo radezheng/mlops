@@ -28,3 +28,7 @@ az ml schedule create --file schedule-job-adv.yml -g rg-aml -w aml-ea \
 az ml schedule list -g rg-aml -w aml-ea -o table
 
 az ml schedule disable --name simple_cron_job_schedule -g rg-aml -w aml-ea
+
+
+
+#####
