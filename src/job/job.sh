@@ -32,3 +32,5 @@ az ml schedule disable --name simple_cron_job_schedule -g rg-aml -w aml-ea
 
 
 #####
+git remote add github https://github.com/radezheng/mlops
+git push github master

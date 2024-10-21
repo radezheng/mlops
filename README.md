@@ -97,5 +97,7 @@ instance_count: 1
 - [./deploy-schedule-pipeline.yml](./deploy-schedule-pipeline.yml) -> [./src/start-aml-schedule.yml](./src/start-aml-schedule.yml) -> [./src/schedule-job-adv.yml](./src/schedule-job-adv.yml) -> [./src/basic-pipeline-job.yml](./src/basic-pipeline-job.yml)
 
 - [./src/start-aml-schedule.yml](./src/start-aml-schedule.yml) 用az cli 调用模板创建 AML Schedule
-- [./src/schedule-job-adv.yml](./src/schedule-job-adv.yml) 定义AML Schedule的具体参数, 同时创建一个AML Pipeline Job
-- [./src/basic-pipeline-job.yml](./src/basic-pipeline-job.yml) 定义AML Pipeline Job的具体参数， 具体调用的python代码在[./src/job](./src/job)目录下
+- [./src/schedule-job-adv.yml](./src/schedule-job-adv.yml) 定义AML Schedule的具体参数, 同时创建一个AML Pipeline Job。
+<br/> 详细参数参考: https://learn.microsoft.com/zh-cn/azure/machine-learning/reference-yaml-schedule?view=azureml-api-2
+- [./src/basic-pipeline-job.yml](./src/basic-pipeline-job.yml) 定义AML Pipeline Job的具体参数， 具体调用的python代码在[./src/job](./src/job)目录下。
+<br/> 详细参数参考: https://learn.microsoft.com/en-us/azure/machine-learning/reference-yaml-job-pipeline?view=azureml-api-2
