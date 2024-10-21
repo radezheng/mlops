@@ -1,0 +1,22 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+display_name: hello_pipeline
+name: hello_pipeline
+experiment_name: hello_pipeline_experiment
+settings:
+  force_rerun: true
+  is_deterministic: False
+
+jobs:
+  hello_job:
+    type: command
+    code: job
+    command: >-
+      python main.py 
+    environment: azureml:basic-env-scikit@latest
+    compute: azureml:cluster1
+    tags:
+      job: hello_job
+      pipeline: hello_pipeline
+    
+    

@@ -1,0 +1,24 @@
+parameters:
+- name: serviceconnectionname
+  default: ''
+
+
+steps:
+- checkout: self
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: ${{ parameters.serviceconnectionname }}
+    scriptType: bash
+    scriptLocation: inlineScript
+    workingDirectory: $(Build.SourcesDirectory)
+    inlineScript: |
+      set -x
+      pwd
+      cd src
+      ls
+      az extension add -n ml --allow-preview false -y
+      az ml -h
+      
+      az ml schedule create --file schedule-job-adv.yml -g rg-aml -w aml-ea
+  displayName: '创建定时任务1'

@@ -8,6 +8,11 @@ https://learn.microsoft.com/zh-cn/azure/machine-learning/how-to-devops-machine-l
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 有问题参考 https://learn.microsoft.com/zh-cn/cli/azure/install-azure-cli-linux?pivots=apt
+- 创建环境
+```bash
+cd src
+az ml environment create --file ./env/basic-env.yml -g <ResourceGroup> -w <WorkspaceName>
+```
 
 # 场景一、 Azure DevOps Pipeline 启动 AML 本地Job
 ### Pipeline 文件 [./start-basic-job.yml](./start-basic-job.yml)
@@ -83,4 +88,14 @@ $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.sch
 model: azureml:test-model01:1
 instance_type: Standard_F4s_v2
 instance_count: 1
+```
+
+# 定时任务
+
+```
+cd src
+az ml job create --file basic-pipeline-job.yml -g rg-aml -w aml-ea
+
+az ml schedule create --file schedule-job.yml --no-wait -g <ResourceGroup> -w <WorkspaceName>
+az ml schedule create --file schedule_job.yml --no-wait -g rg-aml -w aml-ea
 ```

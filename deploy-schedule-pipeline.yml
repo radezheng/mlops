@@ -1,0 +1,51 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+# schedules:
+# - cron: '*/5 * * * *'
+#   displayName: every 5 minutes midnight build
+#   branches:
+#     include:
+#     - master
+#   always: true
+
+pool:
+  name: amlpool
+
+steps:
+- script: echo Deploying Pipeline Schedule!
+  displayName: '部署管道计划'
+
+- bash: az --version
+  displayName: 'Show Azure CLI version'
+
+- script: |
+    if ! command -v yq &> /dev/null
+    then
+        echo "yq could not be found, installing..."
+        sudo snap install yq
+    else
+        echo "yq is already installed"
+    fi
+  displayName: 'Check and Install yq if not exists'
+
+- script: |
+    repo_uri=$(git ls-remote --get-url)
+    branch=$(git symbolic-ref --short HEAD)
+    commit=$(git rev-parse HEAD)
+    commit_message=$(git log -1 --pretty=%B)
+    yq eval '.create_job.tags.repo_uri = "'"$repo_uri"'"' -i src/schedule-job-adv.yml
+    yq eval '.create_job.tags.branch = "'"$branch"'"' -i src/schedule-job-adv.yml
+    yq eval '.create_job.tags.commit = "'"$commit"'"' -i src/schedule-job-adv.yml
+    yq eval '.create_job.tags.commit_message = "'"$commit_message"'"' -i src/schedule-job-adv.yml
+  displayName: 'Add Git Info Tags to YAML'
+
+
+- template: src/start-aml-schedule.yml
+  parameters:
+    serviceconnectionname: 'Azure-ARM-Dev'
