@@ -73,7 +73,7 @@ instance_count: 1
 https://learn.microsoft.com/zh-cn/azure/machine-learning/reference-yaml-deployment-managed-online?view=azureml-api-2#yaml-syntax
 
 本地部署模型定义参考：
-https://learn.microsoft.com/zh-cn/azure/machine-learning/how-to-deploy-mlflow-models-online-endpoints?view=azureml-api-2&tabs=cli#deploy-an-mlflow-model-to-an-online-endpoint <br/>
+https://learn.microsoft.com/zh-cn/azure/machine-learning/how-to-deploy-mlflow-models-online-endpoints?view=azureml-api-2&tabs=cli#deploy-an-mlflow-model-to-an-online-endpoint <br/><br/>
 https://learn.microsoft.com/en-us/azure/machine-learning/reference-yaml-model?view=azureml-api-2#yaml-syntax
 
 
