@@ -65,7 +65,8 @@ model:
   type: mlflow_model
 instance_type: Standard_F4s_v2
 instance_count: 1
-environment: azureml:basic-env-scikit:1
+#可以按需要指定环境，也可以使用默认环境
+#environment: azureml:basic-env-scikit:1
 ```
 
 部署模型定义参考：
