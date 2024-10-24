@@ -1,16 +1,24 @@
 artifact_path: model
 flavors:
   python_function:
-    env: conda.yaml
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
     loader_module: mlflow.sklearn
     model_path: model.pkl
-    python_version: 3.7.13
+    predict_fn: predict
+    python_version: 3.10.15
   sklearn:
+    code: null
     pickled_model: model.pkl
     serialization_format: cloudpickle
-    sklearn_version: 0.24.1
-run_id: 3cdc6ac1-76e3-47e3-a104-5599c222846e
+    sklearn_version: 1.5.2
+mlflow_version: 2.17.0
+model_size_bytes: 782
+model_uuid: 6c6fba30d8ed4786a8b2040756d1671e
+run_id: cyan_stomach_cmbcplb33q
 signature:
   inputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1, 8]}}]'
   outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
-utc_time_created: '2021-11-18 10:39:04.318176'
+  params: null
+utc_time_created: '2024-10-15 11:19:38.470534'

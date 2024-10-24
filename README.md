@@ -65,6 +65,7 @@ model:
   type: mlflow_model
 instance_type: Standard_F4s_v2
 instance_count: 1
+environment: azureml:basic-env-scikit:1
 ```
 
 部署模型定义参考：
@@ -88,6 +89,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.sch
 model: azureml:test-model01:1
 instance_type: Standard_F4s_v2
 instance_count: 1
+environment: azureml:basic-env-scikit:1
 ```
 
 # 场景四、定时任务Job on AML

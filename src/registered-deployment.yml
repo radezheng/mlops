@@ -2,3 +2,4 @@ $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.sch
 model: azureml:test-model01:1
 instance_type: Standard_F4s_v2
 instance_count: 1
+environment: azureml:basic-env-scikit:1

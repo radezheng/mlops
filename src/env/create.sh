@@ -28,3 +28,7 @@ az storage account show --name amlea9646585866 --resource-group rg-aml --query i
 
 # az role assignment create --assignee 61cd9539-4326-4901-a1be-9917bccecb73 --role "Storage Blob Data Reader" --scope /subscriptions/3a444aea-8fbe-45fc-8482-cfb84452837d/resourceGroups/rg-aml/providers/Microsoft.Storage/storageAccounts/amlea9646585866
 az role assignment create --assignee 61cd9539-4326-4901-a1be-9917bccecb73 --role "Storage Blob Data Contributor" --scope /subscriptions/3a444aea-8fbe-45fc-8482-cfb84452837d/resourceGroups/rg-aml/providers/Microsoft.Storage/storageAccounts/amlea9646585866
+
+
+ep_name=test-ep02
+az ml online-deployment create --name depTest011 --endpoint $ep_name -f ./src/mlflow-deployment.yml --all-traffic
